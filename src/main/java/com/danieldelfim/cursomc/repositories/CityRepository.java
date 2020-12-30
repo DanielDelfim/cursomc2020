@@ -1,11 +1,11 @@
 package com.danieldelfim.cursomc.repositories;
 
-import com.danieldelfim.cursomc.entities.Category;
+import com.danieldelfim.cursomc.entities.City;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer>{
+public interface CityRepository extends JpaRepository<City, Integer>{
     
 }

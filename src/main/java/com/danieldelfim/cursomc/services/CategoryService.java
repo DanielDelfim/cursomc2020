@@ -3,6 +3,7 @@ package com.danieldelfim.cursomc.services;
 import java.util.Optional;
 
 import com.danieldelfim.cursomc.entities.Category;
+import com.danieldelfim.cursomc.exceptions.ObjectNotFoundException;
 import com.danieldelfim.cursomc.repositories.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class CategoryService {
 
     public Category find(Integer id) {
         Optional<Category> obj = repo.findById(id);
-        return obj.orElse(null);
-        }
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+        "Objeto não encontrado! Id: " + id + ", Tipo: " + Category.class.getName()));
+    }
+
 }
