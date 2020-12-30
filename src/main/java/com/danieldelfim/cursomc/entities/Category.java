@@ -12,10 +12,12 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data
 @Entity
+@Data
+@AllArgsConstructor
 public class Category implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -28,14 +30,15 @@ public class Category implements Serializable{
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
 
-    public Category(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public Category() {
     }
 
+    public Category(Integer id, String name) {
+        super();
+        this.id = id;
+        this.name = name;
+    }
+    
     public List<Product> getProdutos() {
 		return products;
 	}

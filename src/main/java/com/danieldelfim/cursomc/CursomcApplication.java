@@ -5,19 +5,27 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import com.danieldelfim.cursomc.entities.Address;
 import com.danieldelfim.cursomc.entities.Category;
 import com.danieldelfim.cursomc.entities.City;
 import com.danieldelfim.cursomc.entities.Client;
+import com.danieldelfim.cursomc.entities.Order;
+import com.danieldelfim.cursomc.entities.Payment;
+import com.danieldelfim.cursomc.entities.PaymentBillet;
+import com.danieldelfim.cursomc.entities.PaymentCard;
 import com.danieldelfim.cursomc.entities.Product;
 import com.danieldelfim.cursomc.entities.State;
 import com.danieldelfim.cursomc.entities.enums.ClientType;
+import com.danieldelfim.cursomc.entities.enums.PaymentStatus;
 import com.danieldelfim.cursomc.repositories.AddressRepository;
 import com.danieldelfim.cursomc.repositories.CategoryRepository;
 import com.danieldelfim.cursomc.repositories.CityRepository;
 import com.danieldelfim.cursomc.repositories.ClientRepository;
+import com.danieldelfim.cursomc.repositories.OrderRepository;
+import com.danieldelfim.cursomc.repositories.PaymentRepository;
 import com.danieldelfim.cursomc.repositories.ProductRepository;
 import com.danieldelfim.cursomc.repositories.StateRepository;
 
@@ -36,6 +44,11 @@ public class CursomcApplication implements CommandLineRunner{
 	private ClientRepository clientRepository;
 	@Autowired
 	private AddressRepository addressRepository;
+	@Autowired
+	private OrderRepository orderRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -83,6 +96,23 @@ public class CursomcApplication implements CommandLineRunner{
 		cli1.getAddresses().addAll(Arrays.asList(e1, e2));
 
 		clientRepository.saveAll(Arrays.asList(cli1));
+
 		addressRepository.saveAll(Arrays.asList(e1, e2));
+	
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		Order order1 = new Order(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
+		Order order2 = new Order(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+
+		Payment pay1 = new PaymentCard(null, PaymentStatus.QUITADO, order1, 6);
+		order1.setPayment(pay1);
+
+		Payment pay2 = new PaymentBillet(null, PaymentStatus.PENDENTE, order2, sdf.parse("20/10/2017 00:00"), null);
+		order2.setPayment(pay2);
+
+		cli1.getOrders().addAll(Arrays.asList(order1, order2));
+
+		orderRepository.saveAll(Arrays.asList(order1, order2));
+		paymentRepository.saveAll(Arrays.asList(pay1, pay2));
 	}
 }
