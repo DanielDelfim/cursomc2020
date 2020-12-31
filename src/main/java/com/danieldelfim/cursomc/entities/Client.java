@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.danieldelfim.cursomc.entities.enums.ClientType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +32,7 @@ public class Client implements Serializable{
     private Integer id;
     private String name;
     private String email;
-    private String cpf_Cnpj;
+    private String cpfOuCnpj;
     private Integer type;
 
     @JsonManagedReference
@@ -43,15 +43,14 @@ public class Client implements Serializable{
     @CollectionTable(name = "phones")
     private Set<String> phones = new HashSet<>();
 
-    @JsonIgnore
     @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
 
-    public Client(Integer id, String name, String email, String cpf_Cnpj, ClientType type) {
+    public Client(Integer id, String name, String email, String cpfOuCnpj, ClientType type) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.cpf_Cnpj = cpf_Cnpj;
+        this.cpfOuCnpj = cpfOuCnpj;
         this.type = type.getCode();
     }
 

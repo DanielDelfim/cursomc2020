@@ -2,23 +2,23 @@ package com.danieldelfim.cursomc.services;
 
 import java.util.Optional;
 
-import com.danieldelfim.cursomc.entities.Order;
+import com.danieldelfim.cursomc.entities.Pedido;
 import com.danieldelfim.cursomc.exceptions.ObjectNotFoundException;
-import com.danieldelfim.cursomc.repositories.OrderRepository;
+import com.danieldelfim.cursomc.repositories.PedidoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderService {
+public class PedidoService {
     
     @Autowired
-    private OrderRepository repo;
+    private PedidoRepository repo;
 
-    public Order find(Integer id) {
-        Optional<Order> obj = repo.findById(id);
+    public Pedido find(Integer id) {
+        Optional<Pedido> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-        "Objeto não encontrado! Id: " + id + ", Tipo: " + Order.class.getName()));
+        "Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
     }
 
 }

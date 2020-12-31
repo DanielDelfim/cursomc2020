@@ -1,9 +1,7 @@
 package com.danieldelfim.cursomc.entities;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
-
 import com.danieldelfim.cursomc.entities.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,12 +23,6 @@ public class PaymentBillet extends Payment {
     private Date paymentDate;
 
     public PaymentBillet() {
-    }
-
-    public PaymentBillet(Integer id, PaymentStatus sPaymentStatus, Order order, Date dueDate, Date paymentDate) {
-        super(id, sPaymentStatus, order);
-        this.dueDate = dueDate;
-        this.paymentDate = paymentDate;
     }
 
 }

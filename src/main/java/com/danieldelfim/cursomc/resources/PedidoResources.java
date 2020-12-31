@@ -1,7 +1,7 @@
 package com.danieldelfim.cursomc.resources;
 
-import com.danieldelfim.cursomc.entities.Order;
-import com.danieldelfim.cursomc.services.OrderService;
+import com.danieldelfim.cursomc.entities.Pedido;
+import com.danieldelfim.cursomc.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/Orders")
-public class OrderResources {
+@RequestMapping(value="/pedidos")
+public class PedidoResources {
 
     @Autowired
-    private OrderService service;
+    private PedidoService service;
     
     @RequestMapping(value="/id", method = RequestMethod.GET)
     public ResponseEntity<?>  find(@PathVariable Integer id){
-        Order objOrder = service.find(id);
-        return ResponseEntity.ok().body(objOrder); 
+        Pedido objPedido = service.find(id);
+        return ResponseEntity.ok().body(objPedido); 
      
     }
 }

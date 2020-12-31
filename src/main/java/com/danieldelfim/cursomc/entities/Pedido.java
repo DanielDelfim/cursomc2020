@@ -1,6 +1,5 @@
 package com.danieldelfim.cursomc.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -20,32 +19,24 @@ import lombok.Data;
 @Entity
 @Data
 @AllArgsConstructor
-public class Order implements Serializable{
-    private static final long serialVersionUID = 1L;
+public class Pedido {
     
-    @Id 
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
     @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private Date instante;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Payment payment;
 
     @ManyToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name="delivery_Address_id")
-    private Address deliveryAddress;
-
-    public Order(Integer id, Date instant, Client client, Address deliveryAddress) {
-        this.id = id;
-        this.instante = instant;
-        this.client = client;
-        this.deliveryAddress = deliveryAddress;
-    }
+    @JoinColumn(name = "endereco_de_entrega_id")
+    private Address enderecoDeEntrega;
 
 }

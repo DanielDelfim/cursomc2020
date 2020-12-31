@@ -11,7 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.danieldelfim.cursomc.entities.enums.PaymentStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,11 +27,10 @@ public class Payment implements Serializable{
     private Integer id;
     private PaymentStatus sPaymentStatus;
 
-    @JsonIgnore
     @OneToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "pedido_id")
     @MapsId
-    private Order order;
+    private Pedido pedido;
 
     public Payment(){
         

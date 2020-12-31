@@ -2,8 +2,6 @@ package com.danieldelfim.cursomc.entities;
 
 import javax.persistence.Entity;
 
-import com.danieldelfim.cursomc.entities.enums.PaymentStatus;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,11 +16,6 @@ public class PaymentCard extends Payment {
     private Integer numberCardParcels;
 
     public PaymentCard() {
-    }
-
-    public PaymentCard(Integer id, PaymentStatus sPaymentStatus, Order order, Integer numberCardParcels) {
-        super(id, sPaymentStatus, order);
-        this.numberCardParcels = numberCardParcels;
     }
     
 }

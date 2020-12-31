@@ -12,10 +12,10 @@ import com.danieldelfim.cursomc.entities.Address;
 import com.danieldelfim.cursomc.entities.Category;
 import com.danieldelfim.cursomc.entities.City;
 import com.danieldelfim.cursomc.entities.Client;
-import com.danieldelfim.cursomc.entities.Order;
 import com.danieldelfim.cursomc.entities.Payment;
 import com.danieldelfim.cursomc.entities.PaymentBillet;
 import com.danieldelfim.cursomc.entities.PaymentCard;
+import com.danieldelfim.cursomc.entities.Pedido;
 import com.danieldelfim.cursomc.entities.Product;
 import com.danieldelfim.cursomc.entities.State;
 import com.danieldelfim.cursomc.entities.enums.ClientType;
@@ -24,8 +24,8 @@ import com.danieldelfim.cursomc.repositories.AddressRepository;
 import com.danieldelfim.cursomc.repositories.CategoryRepository;
 import com.danieldelfim.cursomc.repositories.CityRepository;
 import com.danieldelfim.cursomc.repositories.ClientRepository;
-import com.danieldelfim.cursomc.repositories.OrderRepository;
 import com.danieldelfim.cursomc.repositories.PaymentRepository;
+import com.danieldelfim.cursomc.repositories.PedidoRepository;
 import com.danieldelfim.cursomc.repositories.ProductRepository;
 import com.danieldelfim.cursomc.repositories.StateRepository;
 
@@ -45,7 +45,7 @@ public class CursomcApplication implements CommandLineRunner{
 	@Autowired
 	private AddressRepository addressRepository;
 	@Autowired
-	private OrderRepository orderRepository;
+	private PedidoRepository PedidoRepository;
 	@Autowired
 	private PaymentRepository paymentRepository;
 
@@ -99,20 +99,20 @@ public class CursomcApplication implements CommandLineRunner{
 
 		addressRepository.saveAll(Arrays.asList(e1, e2));
 	
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		// SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Order order1 = new Order(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
-		Order order2 = new Order(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+		// Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"),null, cli1, e1);
+		// Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), null, cli1, e2);
 
-		Payment pay1 = new PaymentCard(null, PaymentStatus.QUITADO, order1, 6);
-		order1.setPayment(pay1);
+		// Payment pay1 = new PaymentCard(null, PaymentStatus.QUITADO, ped1, 6);
+		// ped1.setPayment(pay1);
 
-		Payment pay2 = new PaymentBillet(null, PaymentStatus.PENDENTE, order2, sdf.parse("20/10/2017 00:00"), null);
-		order2.setPayment(pay2);
+		// Payment pay2 = new PaymentBillet(null, PaymentStatus.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		// ped2.setPayment(pay2);
 
-		cli1.getOrders().addAll(Arrays.asList(order1, order2));
+		// cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 
-		orderRepository.saveAll(Arrays.asList(order1, order2));
-		paymentRepository.saveAll(Arrays.asList(pay1, pay2));
+		// PedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		// paymentRepository.saveAll(Arrays.asList(pay1, pay2));
 	}
 }
