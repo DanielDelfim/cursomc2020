@@ -15,8 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.danieldelfim.cursomc.entities.enums.ClientType;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +34,6 @@ public class Client implements Serializable{
     private String cpfOuCnpj;
     private Integer type;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private List<Address> addresses = new ArrayList<>();
 
@@ -43,6 +41,7 @@ public class Client implements Serializable{
     @CollectionTable(name = "phones")
     private Set<String> phones = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Pedido> pedidos = new ArrayList<>();
 

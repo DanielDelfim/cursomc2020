@@ -1,33 +1,25 @@
 package com.danieldelfim.cursomc;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import com.danieldelfim.cursomc.entities.Address;
 import com.danieldelfim.cursomc.entities.Category;
 import com.danieldelfim.cursomc.entities.City;
 import com.danieldelfim.cursomc.entities.Client;
-import com.danieldelfim.cursomc.entities.Payment;
-import com.danieldelfim.cursomc.entities.PaymentBillet;
-import com.danieldelfim.cursomc.entities.PaymentCard;
-import com.danieldelfim.cursomc.entities.Pedido;
 import com.danieldelfim.cursomc.entities.Product;
 import com.danieldelfim.cursomc.entities.State;
 import com.danieldelfim.cursomc.entities.enums.ClientType;
-import com.danieldelfim.cursomc.entities.enums.PaymentStatus;
 import com.danieldelfim.cursomc.repositories.AddressRepository;
 import com.danieldelfim.cursomc.repositories.CategoryRepository;
 import com.danieldelfim.cursomc.repositories.CityRepository;
 import com.danieldelfim.cursomc.repositories.ClientRepository;
-import com.danieldelfim.cursomc.repositories.PaymentRepository;
-import com.danieldelfim.cursomc.repositories.PedidoRepository;
 import com.danieldelfim.cursomc.repositories.ProductRepository;
 import com.danieldelfim.cursomc.repositories.StateRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner{
@@ -44,10 +36,12 @@ public class CursomcApplication implements CommandLineRunner{
 	private ClientRepository clientRepository;
 	@Autowired
 	private AddressRepository addressRepository;
-	@Autowired
-	private PedidoRepository PedidoRepository;
-	@Autowired
-	private PaymentRepository paymentRepository;
+	// @Autowired
+	// private PedidoRepository pedidoRepository;
+	// @Autowired
+	// private PaymentRepository paymentRepository;
+	// @Autowired
+	// private ItemPedidoRepository itemPedidoRepository;
 
 
 	public static void main(String[] args) {
@@ -112,7 +106,20 @@ public class CursomcApplication implements CommandLineRunner{
 
 		// cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 
-		// PedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		// pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		// paymentRepository.saveAll(Arrays.asList(pay1, pay2));
+
+		// 	ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		// 	ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		// 	ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+			
+		// 	ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		// 	ped2.getItens().addAll(Arrays.asList(ip3));
+			
+		// 	p1.getItens().addAll(Arrays.asList(ip1));
+		// 	p2.getItens().addAll(Arrays.asList(ip3));
+		// 	p3.getItens().addAll(Arrays.asList(ip2));
+			
+		// 	itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));	
 	}
 }
